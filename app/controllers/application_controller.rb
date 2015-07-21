@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_headers
 
   def set_headers
+    @response.headers['Access-Control-Allow-Origin'] = request.headers['Origin'] || '*'
+    @response.headers['Access-Control-Allow-Credentials'] = request.headers['Origin'] || '*'
     @response.headers['Access-Control-Allow-Origin'] = '*'
     @response.headers['Access-Control-Expose-Headers'] = 'ETag'
     @response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD'
