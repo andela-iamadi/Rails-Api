@@ -43,7 +43,11 @@ module Fellows
 			# Put in data
 			has_params?
 			post do
-				Fellow.create!(set_params)
+				Fellow.create!(				{
+					first_name: params[:first_name],
+					last_name: params[:last_name],
+					email: params[:last_name]
+				})
 			end
 
 			# Now for the update part
