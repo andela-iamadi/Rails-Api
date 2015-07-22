@@ -1,4 +1,5 @@
 module Days
+	require 'Date'
 	class Days_Data < Grape::API
 
 		resource :days do
@@ -9,9 +10,16 @@ module Days
 				Day.all
 			end
 
+			post do
+				Day.create({
+					theme: params[:theme],
+					session_day: Date.parse(params[:session_day])
+					})
+			end
+
 			# Fellows on a set day
 			get '/:day_id/attendance' do
-				Fellow.joins(:attendances).where(attendances: {'day_id': params[:day_id] } );
+				Fellow.joins(:attendances).where(attendances: { 'day_id' => params[:day_id] } );
 				# Attendance.where('day_id = ?', params[:day_id]);
 			end
 

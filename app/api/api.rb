@@ -6,4 +6,6 @@ class API < Grape::API
 	mount Fellows::Fellow_Data
 	mount Attendances::Attendance_Data
 	mount Days::Days_Data
+  mount Users::Users_Data
+  mount Session_Periods::Session_Period_Data
 end

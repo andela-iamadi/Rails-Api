@@ -24,13 +24,6 @@ module Fellows
 				end
 			end
 
-			def set_params
-				{
-					first_name: params[:first_name],
-					last_name: params[:last_name],
-					email: params[:last_name]
-				}
-			end
 
 			get ':id' do
 				Fellow.find(params[:id])
@@ -43,22 +36,33 @@ module Fellows
 			# Put in data
 			has_params?
 			post do
-				Fellow.create!(set_params)
+				f = Fellow.create!({
+					first_name: params[:first_name],
+					last_name: params[:last_name],
+					email: params[:email]
+				})
+
+				User.create({username: params[:username], fellow_id: f.id,
+					password: params[:password]})
 			end
 
 			# Now for the update part
 			desc "The fellows list can get updated at an id"
 
 			has_params?
-			put do
-				Fellow.find(params[:id]).update(set_params)
+			put ':id' do
+				Fellow.find(params[:id]).update({
+					first_name: params[:first_name],
+					last_name: params[:last_name],
+					email: params[:email]
+				})
 			end
 
 			# Yes! The delete part
 			desc "It deletes a fellow data at an id"
 
 			delete ':id' do
-				Fellow.find(params[:id].destroy!) if has_id?
+				Fellow.find(params[:id]).destroy
 			end
 
 		end

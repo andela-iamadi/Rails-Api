@@ -9,8 +9,6 @@ module Attendances
 				Attendance.all
 			end
 
-
-
 			def has_id?
 				params do
 					requires :id, type: Integer
@@ -37,6 +35,25 @@ module Attendances
 			has_params?
 			post do
 				Attendance.create(set_params)
+			end
+
+			post '/register' do
+				fellow = Fellow.joins(:user).where( :users => { :username => params[:username] }).first
+				
+				session = Session.where({:name => params[:session_name]}).first
+
+				Attendance.create({
+					fellow_id: fellow.id,
+					session_period_id: session.id
+				})
+			end
+
+			put '/approve/:fellow_id' do
+				 a = Attendance.where(fellow_id: params[:fellow_id]).first
+				 deadline = a.created_at + (24*60*60)
+				 if Time.new < deadline
+				  a.update(attendance_confirmed: params[:attendance_confirmed])
+				 end
 			end
 
 			# So we show the attendance
