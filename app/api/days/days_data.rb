@@ -1,5 +1,5 @@
 module Days
-	require 'Date'
+	require 'date'
 	class Days_Data < Grape::API
 
 		resource :days do
