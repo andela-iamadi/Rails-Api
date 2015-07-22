@@ -9,8 +9,8 @@ module Fellows
 			get do
 				Fellow.all
 			end
-			# Retrieves a list of fellows according to an optional condition
-			desc "Retrieves conditionally"
+			# Retrieves a list of fellows according to a condition
+			desc "Retrieves conditionally with the fellow's ID"
 
 			def has_id?
 				requires :id, type: Integer
