@@ -5,12 +5,12 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postresql
+  adapter: sqlite3
   pool: 5
   timeout: 5000
 
 development:
-  adapter: sqlite3
+  <<: *default
   database: develpment_markup
   pool: 5
   timeout: 5000
@@ -23,5 +23,7 @@ test:
   database: test_markup
 
 production:
-  <<: *default
+  adapter: postresql
+  pool: 5
+  timeout: 5000
   database: production_markup
