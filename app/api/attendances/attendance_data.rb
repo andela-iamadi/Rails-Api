@@ -69,7 +69,7 @@ module Attendances
 				Attendance.find(params[:id]).update(set_params)
 			end
 
-			# Sure, delete, whatever
+			# Sure, delete at the ID
 			desc "Deletes the attendance from base"
 			has_id?
 			delete ':id' do
