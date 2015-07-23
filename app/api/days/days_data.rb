@@ -19,9 +19,13 @@ module Days
 
 			# Fellows on a set day
 			get '/:day_id/attendance' do
+<<<<<<< HEAD
 
 				Fellow.joins(:attendances).where(attendances: { 'day_id' => params[:day_id] } )
 
+=======
+				Fellow.joins(:attendances).where(attendances: {'day_id' => params[:day_id] } );
+>>>>>>> temp
 			end
 
 		end
