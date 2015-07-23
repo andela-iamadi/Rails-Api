@@ -10,9 +10,24 @@ module Days
 				Day.all
 			end
 
+			get '/:id/:session_id/attendance' do
+				day = Day.find(params[:id])
+				session= day.sessions.where(id: params[:session_id]).first
+				session.fellows
+			end
+
+			get '/:id/sessions' do
+				day = Day.find(params[:id])
+				day.sessions
+			end
+
+			get '/:id/:session_id' do
+				day = Day.find(params[:id])
+				day.sessions.where(id: params[:session_id]).first
+			end
+
 			post do
 				Day.create({
-					theme: params[:theme],
 					session_day: Date.parse(params[:session_day])
 					})
 			end

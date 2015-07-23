@@ -6,13 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-S1 = Session.create(name: "Morning Session", start_time: "555", end_time: "600")
-S2 = Session.create(name: "Afternoon Session", start_time: "955", end_time: "1000")
+S1 = Session.create(name: "Morning Session", start_time: "555", end_time: "600", theme: "Learning and sharing")
+S2 = Session.create(name: "Afternoon Session", start_time: "955", end_time: "1000", theme: "Communication")
 
-	D11 = Day.create(theme: "Creative Learning", session_day: '432223311001')
-	D21 = Day.create(theme: "Being in the moment", session_day: '132223311001')
-	D31 = Day.create(theme: "Yes, and", session_day: '22113311001')
-	D41 = Day.create(theme: "Learning and sharing", session_day: '10022311001')
+	D11 = Day.create(session_day: '432223311001')
+	D21 = Day.create(session_day: '132223311001')
+	D31 = Day.create( session_day: '22113311001')
+	D41 = Day.create( session_day: '10022311001')
 
 	D11.sessions << [S1, S2]
 	D21.sessions << [S1, S2]

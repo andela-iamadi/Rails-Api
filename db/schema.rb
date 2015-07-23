@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721150827) do
+ActiveRecord::Schema.define(version: 20150723135101) do
 
   create_table "attendances", force: :cascade do |t|
     t.boolean  "attendance_confirmed", default: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20150721150827) do
   add_index "attendances", ["session_period_id"], name: "index_attendances_on_session_period_id"
 
   create_table "days", force: :cascade do |t|
-    t.string   "theme"
     t.string   "session_day"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150721150827) do
     t.string   "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "theme"
   end
 
   create_table "users", force: :cascade do |t|
