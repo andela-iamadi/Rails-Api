@@ -9,6 +9,10 @@ module Attendances
 				Attendance.all
 			end
 
+			get '/total/:fellow_id'do
+				Attendance.where(fellow_id: params[:fellow_id])
+			end
+
 			def has_id?
 				params do
 					requires :id, type: Integer
@@ -39,13 +43,15 @@ module Attendances
 
 			post '/register' do
 				fellow = Fellow.joins(:user).where( :users => { :username => params[:username] }).first
-				
-				session = Session.where({:name => params[:session_name]}).first
+				day = Day.where(session_day: params[:date]).first
+				session = day.sessions.where(name: params[:session_name]).first
 
 				Attendance.create({
 					fellow_id: fellow.id,
 					session_period_id: session.id
 				})
+
+				session.fellows << fellow
 			end
 
 			put '/approve/:fellow_id' do

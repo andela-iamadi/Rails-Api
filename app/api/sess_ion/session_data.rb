@@ -21,11 +21,14 @@ module Sess_ion
 			end
 			# Add the session, having satisfied required parameters
 			post do
-				Session.create({
+				session = Session.create({
 					name: params[:name],
 					start_time: params[:start_time],
-					end_time: params[:end_time]
+					end_time: params[:end_time],
+					theme: params[:theme]
 					})
+				day = Day.where(session_day: params[:date]).first
+				day.sessions << session
 			end
 
 			# Deleting an added session
